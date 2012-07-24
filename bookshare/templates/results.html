@@ -1,0 +1,30 @@
+{% extends "dashboard.html" %}
+
+{% block content %}
+
+
+
+<div>
+	<div>
+	    <form action="/feed/" method="post">
+      {% csrf_token %}
+      {# {{ submitform }} #}
+
+      
+            <textarea name='update' rows ='2' cols = '50' placeholder='Enter message'></textarea> 
+            <input type="submit" value="Submit">
+            {% if error %}
+            <b>Please enter a message</b>
+            {% endif %}
+        </form>
+    </div>
+	<ul>
+		 {% for x in feed %} 
+		<li><a href="/profile/{{ x.username }}">{{ x.username }}</a> updated {{ x.message }} on {{ x.date }}</li>
+		 {% endfor %}  
+	</ul>
+</div>
+
+{% endblock %}
+
+  

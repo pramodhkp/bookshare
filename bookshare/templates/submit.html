@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+    <head>
+      {% block script %}
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("books", "0");
+
+      function initialize() {
+        var viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'));
+        viewer.load('ISBN:0738531367');
+      }
+
+      google.setOnLoadCallback(initialize);
+    </script>
+    {% endblock %}
+
+  </head>
+
+  {% block content %}
+    <form action="/feed/" method="post">
+      {% csrf_token %}
+            <textarea name='update' rows ='2' cols = '50' placeholder='Enter message'></textarea>
+            <input type="submit" value="Submit">
+        </form>
+    <!-- <div id="viewerCanvas" style="width: 600px; height: 500px"></div> -->
+  
+ {% include "results.html" %}
+
+  {% endblock %}  
+
+
